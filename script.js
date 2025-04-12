@@ -27,3 +27,21 @@ function loopFireworks() {
 window.addEventListener("load", () => {
     loopFireworks();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const spotlightOverlay = document.getElementById("spotlightOverlay");
+    const spotlightImage = document.getElementById("spotlightImage");
+    const slideImages = document.querySelectorAll(".slide img");
+
+    slideImages.forEach(img => {
+        img.addEventListener("click", () => {
+            spotlightImage.src = img.src;
+            spotlightOverlay.style.display = "flex";
+        });
+    });
+
+    spotlightOverlay.addEventListener("click", () => {
+        spotlightOverlay.style.display = "none";
+        spotlightImage.src = "";
+    });
+});
