@@ -45,3 +45,29 @@ document.addEventListener("DOMContentLoaded", () => {
         spotlightImage.src = "";
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const playButton = document.getElementById('playSong');
+    const birthdaySong = document.getElementById('birthdaySong');
+    const videos = document.querySelectorAll('.video-container video');
+
+    playButton.addEventListener('click', () => {
+        birthdaySong.play();
+    });
+
+    videos.forEach((video) => {
+        video.addEventListener('play', () => {
+            if (!birthdaySong.paused) {
+                birthdaySong.pause();
+            }
+
+            videos.forEach((otherVideo) => {
+                if (otherVideo !== video && !otherVideo.paused) {
+                    otherVideo.pause();
+                }
+            });
+        });
+    });
+});
+
+
